@@ -2,17 +2,13 @@
 
 #include <QList>
 
-class QMoveEvent;
-class QResizeEvent;
-class QShowEvent;
+class QEvent;
 class QWidget;
 
 class DialogHostObserver
 {
 public:
-  virtual void hostMoveEvent(QWidget * parent, QMoveEvent *event) = 0;
-  virtual void hostResizeEvent(QWidget * parent, QResizeEvent *event) = 0;
-  virtual void hostShowEvent(QWidget * parent, QShowEvent *event) = 0;
+  virtual void hostEvent(QWidget * parent, QEvent *event) = 0;
 };
 
 template<typename Base>
@@ -40,7 +36,7 @@ protected:
     Base::moveEvent(event);
 
     for(auto observer : observers)
-      observer->hostMoveEvent(this, event);
+      observer->hostEvent(this, event);
   }
 
   void resizeEvent(QResizeEvent *event) override
@@ -48,7 +44,7 @@ protected:
     Base::resizeEvent(event);
 
     for(auto observer : observers)
-      observer->hostResizeEvent(this, event);
+      observer->hostEvent(this, event);
   }
 
   void showEvent(QShowEvent *event) override
@@ -56,7 +52,7 @@ protected:
     Base::showEvent(event);
 
     for(auto observer : observers)
-      observer->hostShowEvent(this, event);
+      observer->hostEvent(this, event);
   }
 
 private:

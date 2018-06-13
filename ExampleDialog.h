@@ -20,17 +20,7 @@ public:
     setLayout(layout);
   }
 
-  void hostMoveEvent(QWidget *parent, QMoveEvent *event) override
-  {
-    resizeAndMove(parent);
-  }
-
-  void hostResizeEvent(QWidget *parent, QResizeEvent *event) override
-  {
-    resizeAndMove(parent);
-  }
-
-  void hostShowEvent(QWidget *parent, QShowEvent *event) override
+  void hostEvent(QWidget *parent, QEvent *event) override
   {
     resizeAndMove(parent);
   }
