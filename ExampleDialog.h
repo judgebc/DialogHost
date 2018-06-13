@@ -22,12 +22,6 @@ public:
 
   void hostEvent(QWidget *parent, QEvent *event) override
   {
-    resizeAndMove(parent);
-  }
-
-private:
-  void resizeAndMove(QWidget *parent)
-  {
     setFixedSize(parent->size() / 2);
 
     auto offset = (parent->size() - size()) / 2;
